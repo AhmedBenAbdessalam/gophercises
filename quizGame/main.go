@@ -3,13 +3,16 @@ package main
 import (
 	"bufio"
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
 )
 
 func main() {
-	file, err := os.Open("problems.csv")
+	filePtr := flag.String("csv", "problems.csv", "a csv file in the format of 'question,answer'")
+	flag.Parse()
+	file, err := os.Open(*filePtr)
 	if err != nil {
 		fmt.Println(err)
 		return
